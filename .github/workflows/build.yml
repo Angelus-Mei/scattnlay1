@@ -15,16 +15,17 @@ jobs:
         python-version: '3.9'
         
     - name: Install dependencies
+      # 这里我们将 scattnlay 替换为了 PyMieScatt，它不需要编译，安装极其快速稳定
       run: |
         pip install --upgrade pip
-        pip install numpy matplotlib PyQt6 scattnlay pyinstaller
+        pip install numpy matplotlib PyQt6 PyMieScatt pyinstaller
         
     - name: Build EXE
       run: |
-        pyinstaller --noconsole --onefile --name=ScattnlayCalculator main.py
+        pyinstaller --noconsole --onefile --name=MieCalculator main.py
         
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ScattnlayCalculator-EXE
-        path: dist/ScattnlayCalculator.exe
+        name: MieCalculator-EXE
+        path: dist/MieCalculator.exe
